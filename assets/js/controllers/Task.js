@@ -13,7 +13,16 @@ export default function Task() {
         title: title.value,
         description: description.value,
         priority: parseInt(priority.value),
-        finishAt: finishAt.value ? `${finishAt.value}:00` : "00:00:00",
+        finishAt: Date.parse(
+          new Date(
+            new Date().getFullYear(),
+            new Date().getMonth(),
+            new Date().getDate(),
+            finishAt.value.split(":")[0],
+            finishAt.value.split(":")[1]
+          )
+        ),
+        completed: false,
       };
 
       model.save(task);
@@ -25,7 +34,14 @@ export default function Task() {
     },
 
     find: () => {
-      return taskView.mount(model.find);
+      const array = [];
+      const obj = model.find;
+
+      for (let id in obj) {
+        array.push(obj[id]);
+      }
+
+      return taskView.mount(array);
     },
   };
 

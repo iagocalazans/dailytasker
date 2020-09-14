@@ -10,12 +10,13 @@ class Model {
     data._id = `_${token.toString(16)}`;
     data.id = token.toString(16);
     this.table.token++;
-    const date = new Date();
-    data._createdAt = date.toLocaleTimeString();
+    data._createdAt = new Date();
 
     Object.assign(this.table.data, {
       [`_${data.id}`]: data,
     });
+
+    return this.table.data;
   }
 
   get find() {

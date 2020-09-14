@@ -29,7 +29,7 @@ const refreshEvent = new Event("refresh");
     taskController.refresh();
   });
 
-  setInterval(refresh, 15 * 60000);
+  setInterval(refresh, 1 * 60000);
 })();
 
 //Function Refresh, to dispatch from Interval
