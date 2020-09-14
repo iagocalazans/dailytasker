@@ -10,11 +10,7 @@ const refreshEvent = new Event("refresh");
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     taskController.submit(e);
-
-    e.target.title.value = "";
-    e.target.description.value = "";
-    e.target.priority.value = 4;
-    e.target.finishAt.value = "";
+    form.reset();
   });
 
   form.addEventListener("reset", function (e) {
@@ -25,9 +21,7 @@ const refreshEvent = new Event("refresh");
 
 // Function to control List Refresh
 (function () {
-  taskList.addEventListener("refresh", function (e) {
-    taskController.refresh();
-  });
+  taskList.addEventListener("refresh", () => taskController.refresh());
 
   setInterval(refresh, 1 * 60000);
 })();

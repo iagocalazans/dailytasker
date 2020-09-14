@@ -1,5 +1,12 @@
+import TaskController from "../controllers/Task.js";
+const taskController = new TaskController();
+
 export default function Task() {
   this.mount = (tasks) => {
+    if (tasks.length === 0) {
+      return;
+    }
+
     const taskList = document.getElementById("task-list");
 
     while (taskList.firstChild) {
@@ -7,11 +14,13 @@ export default function Task() {
     }
 
     tasks.sort((a, b) => a.finishAt - b.finishAt);
+    tasks.sort((a, b) => (a.completed ? 1 : b.completed ? -1 : 0));
 
     for (let task of tasks) {
       const link = document.createElement("a");
       link.setAttribute("id", `task-${task.id}`);
       link.setAttribute("href", "#");
+      link.onclick = () => taskController.complete(link.id);
       link.classList.add(
         "list-group-item",
         "list-group-item-action",
@@ -22,7 +31,13 @@ export default function Task() {
       header.classList.add("d-flex", "w-100", "justify-content-between");
 
       const title = document.createElement("h5");
-      title.innerText = `${task.title}`;
+      if (task.completed) {
+        const del = document.createElement("del");
+        del.innerText = `${task.title}`;
+        title.appendChild(del);
+      } else {
+        title.innerText = `${task.title}`;
+      }
       title.classList.add("font-weight-bold");
 
       const timer = document.createElement("small");
@@ -93,6 +108,18 @@ export default function Task() {
           break;
       }
       priority.innerText = priorityText;
+
+      if (task.completed) {
+        link.classList.add("disabled");
+        timer.innerText = "completed";
+        timer.classList.remove(
+          "text-primary",
+          "text-info",
+          "text-warning",
+          "text-danger"
+        );
+        timer.classList.add("text-dark");
+      }
 
       header.appendChild(title);
       header.appendChild(timer);

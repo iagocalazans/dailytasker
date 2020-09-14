@@ -4,6 +4,7 @@ import TaskView from "../views/Task.js";
 const taskView = new TaskView();
 const model = new TaskModel(db, "tasks");
 
+// This Function returns obj with methods (instead of this attr as standard)! I made it to use all types of JavaScript Objects on this Little App.
 export default function Task() {
   const obj = {
     submit: (event) => {
@@ -42,6 +43,11 @@ export default function Task() {
       }
 
       return taskView.mount(array);
+    },
+
+    complete: (id) => {
+      model.update(`_${id.split("-")[1]}`, { completed: true });
+      obj.refresh();
     },
   };
 

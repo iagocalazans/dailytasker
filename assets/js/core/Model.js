@@ -25,7 +25,13 @@ class Model {
 
   findOne(params) {}
 
-  update(id, data) {}
+  update(id, data) {
+    const { ...args } = data;
+    const el = this.table.data[id];
+    for (let key in args) {
+      el[key] = args[key];
+    }
+  }
 }
 
 export default Model;
