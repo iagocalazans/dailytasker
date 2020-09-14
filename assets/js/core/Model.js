@@ -16,8 +16,6 @@ class Model {
     Object.assign(this.table.data, {
       [`_${data.id}`]: data,
     });
-
-    console.log(this.find);
   }
 
   get find() {
@@ -25,6 +23,8 @@ class Model {
   }
 
   findOne(params) {}
+
+  update(id, data) {}
 }
 
 export default Model;

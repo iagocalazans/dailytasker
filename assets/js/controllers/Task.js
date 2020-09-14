@@ -1,5 +1,7 @@
 import TaskModel from "../models/Task.js";
 import { db } from "../core/index.js";
+import TaskView from "../views/Task.js";
+const taskView = new TaskView();
 const model = new TaskModel(db, "tasks");
 
 export default function Task() {
@@ -15,6 +17,15 @@ export default function Task() {
       };
 
       model.save(task);
+      obj.refresh();
+    },
+
+    refresh: () => {
+      obj.find();
+    },
+
+    find: () => {
+      return taskView.mount(model.find);
     },
   };
 
