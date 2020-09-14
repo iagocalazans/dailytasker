@@ -116,9 +116,10 @@ export default function Task() {
           "text-primary",
           "text-info",
           "text-warning",
-          "text-danger"
+          "text-danger",
+          "font-weight-bold"
         );
-        timer.classList.add("text-dark");
+        timer.classList.add("text-success", "font-weight-bold");
       }
 
       header.appendChild(title);
