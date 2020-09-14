@@ -37,7 +37,7 @@ export default function Task() {
       link.appendChild(p);
       link.appendChild(priority);
 
-      console.log(link);
+      //console.log(link);
       taskList.appendChild(link);
     }
   };
