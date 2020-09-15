@@ -110,7 +110,7 @@ export default function Task() {
       priority.innerText = priorityText;
 
       if (task.completed) {
-        link.classList.add("disabled");
+        link.classList.add("disabled", "bg-light");
         timer.innerText = "completed";
         timer.classList.remove(
           "text-primary",
