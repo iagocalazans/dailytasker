@@ -3,14 +3,26 @@ const taskController = new TaskController();
 
 export default function TaskView() {
   this.mount = (tasks) => {
-    if (tasks.length === 0) {
-      return;
-    }
-
     const taskList = document.getElementById("task-list");
 
     while (taskList.firstChild) {
       taskList.removeChild(taskList.firstChild);
+    }
+
+    if (tasks.length === 0) {
+      const link = document.createElement("a");
+      link.setAttribute("id", "task-3");
+      link.setAttribute("href", "#");
+      link.setAttribute(
+        "class",
+        "list-group-item list-group-item-action disabled text-center"
+      );
+      link.setAttribute("tabindex", "-1");
+      link.setAttribute("aria-disabled", "true");
+      link.innerText = "Empty task list, add new tasks...";
+
+      taskList.appendChild(link);
+      return;
     }
 
     tasks.sort((a, b) => a.finishAt - b.finishAt);

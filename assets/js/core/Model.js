@@ -50,6 +50,8 @@ class Model {
       }),
       1
     );
+
+    return this.db.setItem(this.collection, this.table);
   }
 
   clear() {
