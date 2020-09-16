@@ -1,11 +1,11 @@
-import TaskModel from "../models/Task.js";
-import { db } from "../core/index.js";
-import TaskView from "../views/Task.js";
+import TaskModel from "../models/taskModel.js";
+import { store } from "../core/index.js";
+import TaskView from "../views/taskView.js";
 const taskView = new TaskView();
-const model = new TaskModel(db, "tasks");
+const model = new TaskModel(store, "tasks");
 
 // This Function returns obj with methods (instead of this attr as standard)! I made it to use all types of JavaScript Objects on this Little App.
-export default function Task() {
+export default function TaskController() {
   const obj = {
     submit: (event) => {
       const { title, description, priority, finishAt } = event.target;
@@ -26,7 +26,7 @@ export default function Task() {
         completed: false,
       };
 
-      model.save(task);
+      model.create(task);
       obj.refresh();
     },
 
@@ -35,19 +35,27 @@ export default function Task() {
     },
 
     find: () => {
-      const array = [];
       const obj = model.find;
 
-      for (let id in obj) {
-        array.push(obj[id]);
+      for (let task of obj) {
+        const left = task.finishAt - Date.now();
+        if (left < -300000 && task.completed) {
+          model.delete(task.id);
+        }
       }
 
-      return taskView.mount(array);
+      return taskView.mount(obj);
     },
 
     complete: (id) => {
-      model.update(`_${id.split("-")[1]}`, { completed: true });
+      model.update(`${id.split("-")[1]}`, { completed: true });
       obj.refresh();
+    },
+
+    clear: () => {
+      model.clear();
+      window.alert("All your tasks have been cleared!");
+      document.location.reload();
     },
   };
 

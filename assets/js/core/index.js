@@ -1,4 +1,3 @@
-import Db from "./Db/Db.js";
+import Store from "./Storage/Store.js";
 
-export const db = new Db();
-export const table = db.create("tasks");
+export const store = new Store("dailytasker", ["tasks"]);

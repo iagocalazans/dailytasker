@@ -1,4 +1,4 @@
-import TaskController from "./controllers/Task.js";
+import TaskController from "./controllers/taskController.js";
 
 const form = document.getElementById("newTaskForm");
 const taskController = new TaskController();
@@ -30,3 +30,13 @@ const refreshEvent = new Event("refresh");
 function refresh() {
   taskList.dispatchEvent(refreshEvent);
 }
+
+//Function to first refresh after Window Load
+(function () {
+  window.addEventListener("load", () => taskController.refresh());
+})();
+
+(function () {
+  const clearBtn = document.getElementById("clearAll");
+  clearBtn.addEventListener("click", () => taskController.clear());
+})();

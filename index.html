@@ -17,6 +17,7 @@
       media="screen"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -28,12 +29,12 @@
         <small
           class="text-light align-center d-inline-block col-md-6 text-center"
         >
-          ** Do not refresh the page! We aren't storing values!! **
+          ** Refresh the page! We are now storing values! **
         </small>
       </div>
     </nav>
 
-    <div class="container">
+    <main role="main" class="container">
       <div class="row mt-5">
         <div class="col-12">
           <p class="text-center">
@@ -122,9 +123,9 @@
       </div>
       <div class="row mt-3">
         <div class="col-12 d-inline-block">
-          <h2 class="col d-inline">Your daily tasks list:</h2>
+          <h2 class="col d-inline">Your daily task list:</h2>
           <span class="col ml-2 d-inline text-muted small align-baseline"
-            >(click tasks to complete em)</span
+            >(click a task to complete it)</span
           >
         </div>
       </div>
@@ -142,7 +143,49 @@
           </div>
         </div>
       </div>
-    </div>
+      <div class="row justify-content-between mb-3">
+        <div class="col-4">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text text-muted">
+                Completed tasks get deleted after 5 minutes (of the doing time).
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text text-muted">
+                Do you want to delete all tasks?
+              </p>
+              <a class="btn btn-danger" id="clearAll">Click me!</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text text-muted">
+                Daily Tasker stores all data on your Browser Storage, ok? No
+                database use!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer mt-5 py-3" id="footer">
+      <div class="container">
+        <p class="text-center text-black-50 mb-0">
+          <code>&lt;footer&gt;</code> says: created by
+          <a class="text-dark" href="https://www.linkedin.com/in/iago-calazans/"
+            >Iago Calazans</a
+          >.
+        </p>
+      </div>
+    </footer>
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.min.js"

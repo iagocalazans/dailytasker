@@ -1,9 +1,9 @@
 import Model from "../core/Model.js";
 
-class Task extends Model {
+class TaskModel extends Model {
   constructor(db, tasks) {
     super(db, tasks);
   }
 }
 
-export default Task;
+export default TaskModel;

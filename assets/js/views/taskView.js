@@ -1,7 +1,7 @@
-import TaskController from "../controllers/Task.js";
+import TaskController from "../controllers/taskController.js";
 const taskController = new TaskController();
 
-export default function Task() {
+export default function TaskView() {
   this.mount = (tasks) => {
     if (tasks.length === 0) {
       return;
@@ -110,7 +110,7 @@ export default function Task() {
       priority.innerText = priorityText;
 
       if (task.completed) {
-        link.classList.add("disabled");
+        link.classList.add("disabled", "bg-light");
         timer.innerText = "completed";
         timer.classList.remove(
           "text-primary",
