@@ -24,7 +24,7 @@ describe("Model Class", () => {
   });
 
   describe("Methods:", () => {
-    it("#create(data)", () => {
+    it("create(data)", () => {
       const data = {
         title: "title.value",
         description: "description.value",
@@ -56,12 +56,12 @@ describe("Model Class", () => {
         .to.equal(false);
     });
 
-    it("#find()", () => {
+    it("find()", () => {
       const all = model.find;
       expect(all).to.have.lengthOf(model.table.data.length);
     });
 
-    it("#update(id, data)", () => {
+    it("update(id, data)", () => {
       const [first] = model.table.data;
       model.update(first.id, { completed: true });
       expect(model.table.data[0])
@@ -69,13 +69,13 @@ describe("Model Class", () => {
         .to.equal(true);
     });
 
-    it("#delete(id)", () => {
+    it("delete(id)", () => {
       const [first] = model.table.data;
       model.delete(first.id);
       expect(model.table.data).to.have.a.lengthOf(0);
     });
 
-    it("#clear()", () => {
+    it("clear()", () => {
       model.clear();
       expect(window.localStorage).to.have.a.lengthOf(0);
     });
